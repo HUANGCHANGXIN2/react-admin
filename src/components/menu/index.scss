@@ -1,0 +1,41 @@
+.menu{
+    height: 100%;
+    .ant-layout-header{
+        height: 50px;
+    }
+    .ant-layout{
+        height: 100%;
+    }
+    .header{
+        background: #1890ff;
+
+        .nav{
+            height: 50px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .trigger{
+                font-size: 18px;
+                margin-left: 10px;
+                
+            }
+            .trigger:hover {
+                color: #000;
+              }
+        }
+    }
+      .logo {
+        height: 50px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 100%;
+        }
+      }
+      .ant-layout-header{
+          padding: 0;
+      }
+}
