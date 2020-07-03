@@ -44,11 +44,10 @@ class User extends React.Component {
       infoList: [
         {
           id: 1,
-          product_name: "asin",
-          product_iphone: "17681862433",
-          product_dea: "2020-06-15",
+          name: "asin",
+          iphone: "17681862433",
+          date: "2020-06-15",
           type: "管理员",
-          title: "新增用户",
         },
       ],
       visible: false,
@@ -56,6 +55,7 @@ class User extends React.Component {
       pageNum: 1,
       pageSize: 8,
       total: 20,
+      title:'新增用户'
     };
   }
   formRef = React.createRef();
@@ -82,15 +82,12 @@ class User extends React.Component {
   confirm = () => {};
   //新增弹窗
   showModal = () => {
-    console.log("新增");
-
     this.setState({
       visible: true,
+      showPwd:true
     });
   };
   handleCancel = () => {
-    console.log("123");
-
     this.setState({
       visible: false,
     });
@@ -102,20 +99,22 @@ class User extends React.Component {
       },
       () => {
         console.log(page);
-
         // this.getInfo()
       }
     );
   };
   // 编辑
   edit = (e) => {
-    console.log(e);
-    this.setState({
-      title: "编辑用户",
-      visible: true,
-    });
-    this.formInfo.current.setFieldsValue(e);
-    
+    setTimeout(()=>{
+      console.log(e);
+      this.setState({
+        title: "编辑用户",
+        visible: true,
+        showPwd:'none'
+      });
+      this.formInfo.current.setFieldsValue(e);
+    })
+
   };
   //确定保存
   handleOk = (e) => {
@@ -129,11 +128,12 @@ class User extends React.Component {
       total: this.state.total,
       onChange: this.changePage,
       pageSize: this.state.pageSize,
+      showPwd:true
     };
     const columns = [
       {
         title: "用户名称",
-        dataIndex: "product_name",
+        dataIndex: "name",
         align: "center",
         // render: (text, record) => (  //塞入内容
         //   <img src={record.product_img} width="100px" alt="" />
@@ -141,12 +141,12 @@ class User extends React.Component {
       },
       {
         title: "手机号码",
-        dataIndex: "product_iphone",
+        dataIndex: "iphone",
         align: "center",
       },
       {
         title: "注册时间",
-        dataIndex: "product_dea",
+        dataIndex: "date",
         align: "center",
         // render: (text, record) => (  //塞入内容
         //   <img src={record.product_dea} width="30px" height='150px' alt="" />
@@ -180,12 +180,11 @@ class User extends React.Component {
             >
               <a>删除</a>
             </Popconfirm>
-            ,
           </Space>
         ),
       },
     ];
-    const { title, infoList, visible, confirmLoading } = this.state;
+    const { title, infoList, visible, confirmLoading,showPwd } = this.state;
     return (
       <div className="user">
         <Form
@@ -195,7 +194,7 @@ class User extends React.Component {
           name="control-ref"
         >
           <Form.Item name="name" label="姓名">
-            <Input style={{ width: 200 }} />
+            <Input style={{ width: 200 }} allowClear/>
           </Form.Item>
           <Form.Item name="type" label="类型">
             <Select style={{ width: 200 }} placeholder="请选择" allowClear>
@@ -243,7 +242,7 @@ class User extends React.Component {
             name="info"
           >
             <Form.Item name="name" label="姓名">
-              <Input placeholder="请输入" />
+              <Input placeholder="请输入"  />
             </Form.Item>
             <Form.Item name="type" label="类型">
               <Select placeholder="请选择" allowClear placeholder="请选择">
@@ -252,7 +251,7 @@ class User extends React.Component {
                 <Option value="other">up主</Option>
               </Select>
             </Form.Item>
-            <Form.Item name="pwd" label="密码">
+            <Form.Item style={{display:showPwd}} name="pwd" label="密码">
               <Input placeholder="请输入" />
             </Form.Item>
           </Form>

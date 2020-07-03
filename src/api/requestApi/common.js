@@ -9,6 +9,9 @@ const common = {
     userInfo(data) {
         return get('/api/admin/statistics/user',data);
     },
+    comments(data) {
+        return get('/api/content/sheets/6/comments/top_view',data);
+    },
 
 };
 export default common;

@@ -1,3 +1,29 @@
 .home {
-
+    .top-left{
+        position: relative;
+        float: left;
+        // width: 300px;
+        // height: 180px;
+        margin-left:20px ;
+        margin-bottom: 20px;
+        border-radius: 10px;
+        .top-left-box{
+            position: absolute;
+            left: 30px;
+            top: 50px;
+            font-size: 20px;
+            h2{
+                font-size: 30px;
+                color: #1890ff;
+            }
+        }
+    }
+    .ant-card{
+        color:#1890ff;
+        background:none;
+        border-radius: 15px;
+    }
+    .ant-card-bordered{
+        border: none;
+    }
 }
